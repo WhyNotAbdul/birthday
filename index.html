@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy Birthday Mariya Fatima 💖</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Floating hearts background -->
+    <div id="hearts-bg" aria-hidden="true"></div>
+
+    <div id="app">
+
+        <!-- ══════════ SCREEN 1: WELCOME ══════════ -->
+        <section id="screen-welcome" class="screen active">
+            <h1 class="title-script">Happy Birthday,</h1>
+            <h2 class="name">Mariya Fatima</h2>
+            <div class="teddy-art">🧸🎂🐼</div>
+            <div class="bunting" aria-hidden="true">🎊🎉🎈🎉🎊</div>
+            <p class="prompt">Are you excited for what's next?</p>
+            <div class="yesno">
+                <button class="btn-yes" onclick="nextScreen('screen-balloons', '🎈')">Yes</button>
+                <button class="btn-no" id="btn-no">No</button>
+            </div>
+        </section>
+
+        <!-- ══════════ SCREEN 2: BALLOONS ══════════ -->
+        <section id="screen-balloons" class="screen">
+            <h2 class="section-title">Pop all 4 balloons 🎈</h2>
+            <p class="section-sub">Tap each balloon to reveal a word</p>
+            <div id="balloon-area">
+                <button class="balloon" data-word="You"     style="--c1:#8ec4f0; --c2:#5aa6e0; left:12%; top:18%;"></button>
+                <button class="balloon" data-word="are"     style="--c1:#f3a6c4; --c2:#e06a9a; left:60%; top:12%;"></button>
+                <button class="balloon" data-word="so"      style="--c1:#9ce0b0; --c2:#5fc07f; left:18%; top:52%;"></button>
+                <button class="balloon" data-word="special" style="--c1:#c3a6f0; --c2:#9a6ae0; left:58%; top:50%;"></button>
+            </div>
+            <p id="balloon-words" class="revealed-words"></p>
+            <button class="btn-primary hidden" id="balloons-next" onclick="nextScreen('screen-candle', '🕯️')">Next ➜</button>
+        </section>
+
+        <!-- ══════════ SCREEN 3: CANDLE ══════════ -->
+        <section id="screen-candle" class="screen">
+            <h2 class="section-title">Blow the candle, Mariya Fatima</h2>
+            <div id="cake">
+                <div id="flame" class="flame"></div>
+                <div class="candle-stick"></div>
+                <div class="cake-top"></div>
+                <div class="cake-body"></div>
+                <div class="cake-plate"></div>
+            </div>
+            <p id="candle-hint" class="tap-hint">👆 Tap to blow the candle</p>
+            <p id="candle-wish" class="wish-text hidden">Close your eyes &amp; make a wish ✨</p>
+            <button class="btn-primary hidden" id="candle-next" onclick="nextScreen('screen-rose', '🌹')">Next ➜</button>
+        </section>
+
+        <!-- ══════════ SCREEN 4: ROSE BOUQUET ══════════ -->
+        <section id="screen-rose" class="screen">
+            <h2 class="title-script rose-title">Your Rose Bouquet 🌹</h2>
+            <div class="bouquet-art">💐</div>
+            <p class="section-sub">Made with all my love for you</p>
+            <button class="btn-primary" onclick="nextScreen('screen-moments', '📸')">Next ➜</button>
+        </section>
+
+        <!-- ══════════ SCREEN 5: SWEET MOMENTS ══════════ -->
+        <section id="screen-moments" class="screen">
+            <h2 class="title-script">Some Sweet Moments</h2>
+            <p class="section-sub">(Swipe the cards)</p>
+            <div id="moments-deck">
+                <!-- Cards injected by JS -->
+            </div>
+            <p class="swipe-hint">⬅️ Swipe / drag ➡️</p>
+            <button class="btn-primary" onclick="nextScreen('screen-envelope', '💌')">Next ➜</button>
+        </section>
+
+        <!-- ══════════ SCREEN 6: ENVELOPE / MESSAGE ══════════ -->
+        <section id="screen-envelope" class="screen">
+            <h2 class="title-script">A Message From My Heart</h2>
+            <div id="envelope" class="envelope">
+                <div class="env-flap"></div>
+                <div class="env-pocket"></div>
+                <div class="env-heart">💗</div>
+            </div>
+            <p id="envelope-hint" class="tap-hint">👆 Tap the envelope to open</p>
+
+            <div id="letter" class="letter hidden">
+                <p class="letter-greeting">Dear Mariya Fatima,</p>
+                <p class="letter-body" id="letter-body">
+                    [ Your message will go here — send it to me whenever you're ready
+                    and I'll place it in this letter. ]
+                </p>
+                <p class="letter-sign">Forever yours ❤️</p>
+            </div>
+            <button class="btn-primary hidden" id="envelope-next" onclick="nextScreen('screen-gift', '🎁')">Next ➜</button>
+        </section>
+
+        <!-- ══════════ SCREEN 7: GIFT REVEAL ══════════ -->
+        <section id="screen-gift" class="screen">
+            <h2 class="title-script">One Final Surprise 🎁</h2>
+            <p class="section-sub">Tap the gift to reveal where it's hidden</p>
+            <button id="gift-box" class="gift-box" onclick="revealGift()">
+                <div class="gift-lid"></div>
+                <div class="gift-body"></div>
+                <div class="gift-ribbon-v"></div>
+                <div class="gift-bow">🎀</div>
+            </button>
+            <div id="gift-reveal" class="gift-reveal hidden">
+                <div class="gift-sparkle">✨🎉✨</div>
+                <p id="gift-location" class="gift-location">
+                    [ The hiding place will appear here — tell me the spot
+                    and I'll reveal it with a little flourish. ]
+                </p>
+                <p class="gift-love">I love you, Mariya 💖</p>
+                <button class="btn-primary" onclick="location.reload()">Replay from start 🔁</button>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Transition overlay -->
+    <div id="transition-overlay" aria-hidden="true"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
